@@ -4,12 +4,42 @@ import Typo from '@/components/Typo';
 import { colors, radius, spacingX, spacingY } from '@/constants/theme';
 import { useAuth } from '@/contexts/authContext';
 import { getProfileImage } from '@/Services/ImageService';
+import { accountOptionType } from '@/types';
 import { verticalScale } from '@/utils/styling';
 import { Image } from 'expo-image';
+import * as Icons from 'phosphor-react-native';
 import { StyleSheet, View } from 'react-native';
 
 const Profile = () => {
     const { user } = useAuth()
+
+    const accountOptions: accountOptionType[] = [
+        {
+            title: "Edit Profile",
+            icon: <Icons.UserIcon size={26} color={colors.white} weight='fill' />,
+            routeName: "/(modals)/profileModal",
+            bgColor: "#6366f1",
+        },
+        {
+            title: "Setting",
+            icon: <Icons.GearSixIcon size={26} color={colors.white} weight='fill' />,
+            // routeName: "/(modals)/profileModal",
+            bgColor: colors.neutral600,
+        },
+        {
+            title: "Privacy Policy",
+            icon: <Icons.LockIcon size={26} color={colors.white} weight='fill' />,
+            routeName: "/(modals)/profileModal",
+            bgColor: "#6366f1",
+        },
+        {
+            title: "Logout",
+            icon: <Icons.PowerIcon size={26} color={colors.white} weight='fill' />,
+            // routeName: "/(modals)/profileModal",
+            bgColor: "#e11d48",
+        },
+    ]
+
     return (
         <ScreenWrapper>
             <View style={styles.container}>
@@ -39,6 +69,10 @@ const Profile = () => {
                             {user?.email}
                         </Typo>
                     </View>
+
+                </View>
+                {/* account options */}
+                <View style={styles.accountOptions}>
 
                 </View>
             </View>
